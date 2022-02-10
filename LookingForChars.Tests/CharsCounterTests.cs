@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 
 // ReSharper disable StringLiteralTypo
-namespace LookingForCharsRecursion.Tests
+namespace LookingForChars.Tests
 {
     [TestFixture]
     public class CharsCounterTests
