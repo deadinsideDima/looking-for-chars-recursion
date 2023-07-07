@@ -12,8 +12,22 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters.</returns>
         public static int GetCharsCount(string? str, char[]? chars)
         {
-            // TODO #1. Implement the method using recursive algorithm.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (str.Length == 0)
+            {
+                return 0;
+            }
+
+            return GetCharsCount(str, chars, 0, str.Length - 1, int.MaxValue);
         }
 
         /// <summary>
@@ -26,8 +40,32 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string? str, char[]? chars, int startIndex, int endIndex)
         {
-            // TODO #2. Implement the method using recursive algorithm.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (endIndex < 0 || endIndex >= str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > str.Length - 1 || startIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (startIndex > endIndex)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            return GetCharsCount(str, chars, startIndex, endIndex, int.MaxValue);
         }
 
         /// <summary>
@@ -41,8 +79,49 @@ namespace LookingForChars
         /// <returns>The limited number of occurrences of characters to search for within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string? str, char[]? chars, int startIndex, int endIndex, int limit)
         {
-            // TODO #3. Implement the method using recursive algorithm.
-            throw new NotImplementedException();
+            if (str == null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+
+            if (endIndex < 0 || endIndex >= str.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            }
+
+            if (startIndex > str.Length - 1 || startIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            if (limit < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(limit));
+            }
+
+            if (startIndex > endIndex)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
+            }
+
+            int ans = 0;
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                for (int j = 0; j < chars.Length; j++)
+                {
+                    if (str[i] == chars[j])
+                    {
+                        ans++;
+                    }
+                }
+            }
+
+            return Math.Min(ans, limit);
         }
     }
 }
